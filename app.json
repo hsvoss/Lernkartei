@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Blank Template (TypeScript)",
+    "name": "Lernkartei",
     "slug": "Lernkartei",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -24,7 +24,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "de.hsvoss.lernkartei"
+    },
+    "description": "The best learning app  ever",
+    "android": {
+      "package": "de.hsvoss.lernkartei"
     }
   }
 }
