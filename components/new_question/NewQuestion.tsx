@@ -3,7 +3,7 @@ import {Text, View} from "react-native";
 import {centerWhite} from "../shared/StylesAndColors";
 
 export function NewQuestion() {
-    return <View style={centerWhite.container}>
-        <Text>NewQuestion</Text>
-    </View>
+  return <View style={centerWhite.container}>
+    <Text>NewQuestion</Text>
+  </View>
 }

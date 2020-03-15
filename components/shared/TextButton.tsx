@@ -1,21 +1,39 @@
 import React from 'react'
-import {Text, TouchableOpacity, StyleSheet, GestureResponderEvent} from 'react-native'
-
+import {StyleSheet, Text, TouchableOpacity} from 'react-native'
+import {blue, white} from './StylesAndColors';
 
 
 export default function TextButton({children, onPress, style = {}}) {
-    return (
-        <TouchableOpacity onPress={onPress}>
-            <Text style={[styles.reset, style]}>{children}</Text>
-        </TouchableOpacity>
-
-    )
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={styles.androidSubmitBtn}
+    >
+      <Text style={styles.submitBtnText}>{children}</Text>
+    </TouchableOpacity>
+  )
 }
 
 
 const styles = StyleSheet.create({
-    reset: {
-        textAlign: "center",
-        color: "lightblue"
-    }
+  reset: {
+    textAlign: "center",
+    color: blue
+  },
+  androidSubmitBtn: {
+    backgroundColor: blue,
+    padding: 10,
+    borderRadius: 2,
+    height: 45,
+    marginLeft: 30,
+    marginRight: 30,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  submitBtnText: {
+    color: white,
+    fontSize: 22,
+    textAlign: "center"
+  },
+
 });

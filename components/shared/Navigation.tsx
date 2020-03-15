@@ -15,21 +15,21 @@ const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
 const TabNavigator = () => <Tab.Navigator>
-    <Tab.Screen name="DeckList" component={DeckList}/>
-    <Tab.Screen name="NewDeck" component={NewDeck}/>
+  <Tab.Screen name="DeckList" component={DeckList}/>
+  <Tab.Screen name="NewDeck" component={NewDeck}/>
 </Tab.Navigator>;
 
 export function Navigation() {
-    return <NavigationContainer>
-        <Stack.Navigator initialRouteName={"TabNavigator"}>
-            <Stack.Screen name="TabNavigator" component={TabNavigator}
-                          options={{headerStyle: {height: 0}, headerTitle: ""}}/>
-            <Stack.Screen name="SingleDeck" component={SingleDeck}/>
-            <Stack.Screen name="DeckPreview" component={DeckPreview}/>
-            <Stack.Screen name="NewQuestion" component={NewQuestion}/>
-            <Stack.Screen name="QuizQuestion" component={QuizQuestion}/>
-            <Stack.Screen name="QuizResult" component={QuizResult}/>
-        </Stack.Navigator>
-    </NavigationContainer>
+  return <NavigationContainer>
+    <Stack.Navigator initialRouteName={"TabNavigator"}>
+      <Stack.Screen name="TabNavigator" component={TabNavigator}
+                    options={{headerStyle: {height: 0}, headerTitle: ""}}/>
+      <Stack.Screen name="SingleDeck" component={SingleDeck}/>
+      <Stack.Screen name="DeckPreview" component={DeckPreview}/>
+      <Stack.Screen name="NewQuestion" component={NewQuestion}/>
+      <Stack.Screen name="QuizQuestion" component={QuizQuestion}/>
+      <Stack.Screen name="QuizResult" component={QuizResult}/>
+    </Stack.Navigator>
+  </NavigationContainer>
 }
 
