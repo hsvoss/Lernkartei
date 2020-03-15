@@ -10,21 +10,29 @@ import {NewDeck} from "./new_deck/NewDeck";
 import {NewQuestion} from "./new_question/NewQuestion";
 import {QuizQuestion} from "./quiz/QuizQuestion";
 import {QuizResult} from "./quiz/QuizResult";
+import { Text, View } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 
 export function Navigation() {
     return <NavigationContainer>
-        <Stack.Navigator initialRouteName={"SingleDeck"}>
-            <Stack.Screen name="DeckList" component={DeckList}/>
-            <Stack.Screen name="SingleDeck" component={SingleDeck}/>
-            <Stack.Screen name="DeckPreview" component={DeckPreview}/>
-            <Stack.Screen name="NewDeck" component={NewDeck}/>
-            <Stack.Screen name="NewQuestion" component={NewQuestion}/>
-            <Stack.Screen name="QuizQuestion" component={QuizQuestion}/>
-            <Stack.Screen name="QuizResult" component={QuizResult}/>
-        </Stack.Navigator>
+        {/*<Stack.Navigator initialRouteName={"SingleDeck"}>*/}
+        {/*    <Stack.Screen name="DeckList" component={DeckList}/>*/}
+        {/*    <Stack.Screen name="SingleDeck" component={SingleDeck}/>*/}
+        {/*    <Stack.Screen name="DeckPreview" component={DeckPreview}/>*/}
+        {/*    <Stack.Screen name="NewDeck" component={NewDeck}/>*/}
+        {/*    <Stack.Screen name="NewQuestion" component={NewQuestion}/>*/}
+        {/*    <Stack.Screen name="QuizQuestion" component={QuizQuestion}/>*/}
+        {/*    <Stack.Screen name="QuizResult" component={QuizResult}/>*/}
+        {/*</Stack.Navigator>*/}
+        <Tab.Navigator>
+            <Tab.Screen name="DeckList" component={DeckList} />
+            <Tab.Screen name="NewDeck" component={NewDeck} />
+        </Tab.Navigator>
+
     </NavigationContainer>
 }
 
