@@ -1,6 +1,9 @@
 import React from "react";
-import {Text} from "react-native"
+import {Text, View} from "react-native";
+import {centerWhite} from "../shared/StylesAndColors";
 
 export function DeckPreview() {
-    return <Text>DeckPreview</Text>
+    return <View style={centerWhite.container}>
+        <Text>DeckPreview</Text>
+    </View>
 }

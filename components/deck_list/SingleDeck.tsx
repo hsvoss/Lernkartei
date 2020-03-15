@@ -1,6 +1,9 @@
 import React from "react";
-import {Text} from "react-native"
+import {Text, View} from "react-native";
+import {centerWhite} from "../shared/StylesAndColors";
 
 export function SingleDeck() {
-    return <Text>SingleDeck</Text>
+    return <View style={centerWhite.container}>
+        <Text>SingleDeck</Text>
+    </View>
 }

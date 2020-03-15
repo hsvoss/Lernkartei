@@ -1,6 +1,9 @@
 import React from "react";
-import {Text} from "react-native"
+import {Text, View} from "react-native";
+import {centerWhite} from "../shared/StylesAndColors";
 
 export function QuizResult() {
-    return <Text>QuizResult</Text>
+    return <View style={centerWhite.container}>
+        <Text>QuizResult</Text>
+    </View>
 }

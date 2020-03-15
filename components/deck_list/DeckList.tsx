@@ -1,7 +1,10 @@
 import React from "react";
-import {Text} from "react-native"
+import {Text, View} from "react-native"
+import {centerWhite} from "../shared/StylesAndColors";
 
 export function DeckList() {
-    return <Text>DeckList</Text>
+    return <View style={centerWhite.container}>
+        <Text>DeckList</Text>
+    </View>
 
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {Navigation} from "./components/Navigation";
+import {Navigation} from "./components/shared/Navigation";
 import StatusBarWrapper from "./components/shared/StatusBarWrapper";
 
 export default function App() {
