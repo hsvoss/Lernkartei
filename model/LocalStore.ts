@@ -38,7 +38,6 @@ export const containsDeck: (deckTitel: string) => boolean = (deckTitel: string) 
 };
 
 export const addQestionToDeck = async (deckTitel: string, question: Question): Promise<void> => {
-  debugger
   decks[deckTitel].questions.push(question);
   await saveData();
 };

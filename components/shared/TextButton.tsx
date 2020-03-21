@@ -7,7 +7,7 @@ export default function TextButton({children, onPress, style = {}}) {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={styles.androidSubmitBtn}
+      style={[styles.androidSubmitBtn, style]}
     >
       <Text style={styles.submitBtnText}>{children}</Text>
     </TouchableOpacity>
