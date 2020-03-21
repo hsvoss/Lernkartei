@@ -1,42 +1,35 @@
 import React from "react";
-import {StyleSheet, Text, TextInput, View} from "react-native"
+import {StyleSheet, Text, View} from "react-native"
 import TextButton from "../shared/TextButton";
-import {LocalStore} from "../../model/LocalStore";
+import {addQestionToDeck, getDeck, newDeck, restoreData} from "../../model/LocalStore";
+import {Deck} from "../../model/Deck";
+import {Question} from "../../model/Question";
 
 
 export class DeckList extends React.Component {
 
   state = {
-    text: "",
-    textInput: ""
+    deck: null
   };
 
-  componentDidMount(): void {
-    LocalStore.getData()
-      .then((value: string) => {
-        this.setState({text: value})
-      })
+  async componentDidMount() {
+    await restoreData();
+    let deck: Deck | null = await getDeck('test');
+    this.setState({deck: deck})
   }
-
-  onChangeHandler = value => {
-    this.setState({
-      textInput: value
-    });
-  };
 
   render() {
     return <View style={styles.container}>
       <Text>DeckList</Text>
-      <Text>{this.state.text}</Text>
-      <TextInput
-        value={this.state.textInput}
-        placeholder={"Deck title here... "}
-        onChangeText={value => this.onChangeHandler(value)}
-      />
+      {this.state.deck === undefined || this.state.deck === null
+        ? <Text>Deck is undefined</Text>
+        : <Text>{JSON.stringify(this.state.deck)}</Text>}
       <TextButton onPress={async () => {
-        await LocalStore.storeData(this.state.textInput);
-        // console.log(getData());
-      }}>Store Text</TextButton>
+        await newDeck('test');
+        await addQestionToDeck('test', new Question('frageA', 'antwortA'));
+        await addQestionToDeck('test', new Question('frageB', 'antwortB'));
+      }
+      }>Store Text</TextButton>
     </View>
 
   }

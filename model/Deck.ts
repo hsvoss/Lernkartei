@@ -1,6 +1,11 @@
 import {Question} from "./Question";
 
 export class Deck {
-  deckTitel: string;
-  questions: Question[]
+  public deckTitel: string;
+  public questions: Question[];
+
+  constructor(deckTitel: string) {
+    this.deckTitel = deckTitel;
+    this.questions = [];
+  }
 }
