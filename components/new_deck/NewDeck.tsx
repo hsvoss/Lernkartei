@@ -1,11 +1,6 @@
 import React from "react";
-import {
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
-  TextInput
-} from "react-native";
-import { centerWhite, black, white, blue } from "../shared/StylesAndColors";
+import {KeyboardAvoidingView, StyleSheet, Text, TextInput} from "react-native";
+import {blue, white} from "../shared/StylesAndColors";
 import TextButton from "../shared/TextButton";
 
 export function NewDeck() {
@@ -25,7 +20,8 @@ export function NewDeck() {
         placeholder={"Name your new deck!"}
         value={value}
       />
-      <TextButton onPress={() => {}}>Submit</TextButton>
+      <TextButton onPress={() => {
+      }}>Submit</TextButton>
     </KeyboardAvoidingView>
   );
 }

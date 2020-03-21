@@ -16,7 +16,7 @@ export class DeckList extends React.Component<{navigation}> {
     await restoreData();
     let deck: Deck | null = await getDeck('test');
     this.setState({deck: deck})
-    this.props.navigation.navigate('SingleDeck');
+    this.props.navigation.navigate('NewQuestion');
   }
 
   render() {
