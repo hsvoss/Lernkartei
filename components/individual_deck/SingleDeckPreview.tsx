@@ -10,7 +10,7 @@ import {
 import TextButton from "../shared/TextButton";
 import Card from "../shared/Card";
 
-export function SingleDeck() {
+export function SingleDeckPreview() {
   return (
     <View style={centerWhite.container}>
       <Card>

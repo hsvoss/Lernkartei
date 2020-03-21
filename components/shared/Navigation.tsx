@@ -3,8 +3,7 @@ import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from "@react-navigation/stack";
 import {DeckList} from "../deck_list/DeckList";
-import {SingleDeck} from "../deck_list/SingleDeck";
-import {DeckPreview} from "../individual_deck/DeckPreview";
+import {SingleDeckPreview} from "../individual_deck/SingleDeckPreview";
 import {NewDeck} from "../new_deck/NewDeck";
 import {NewQuestion} from "../new_question/NewQuestion";
 import {QuizQuestion} from "../quiz/QuizQuestion";
@@ -24,8 +23,7 @@ export function Navigation() {
     <Stack.Navigator initialRouteName={"TabNavigator"}>
       <Stack.Screen name="TabNavigator" component={TabNavigator}
                     options={{headerStyle: {height: 0}, headerTitle: ""}}/>
-      <Stack.Screen name="SingleDeck" component={SingleDeck}/>
-      <Stack.Screen name="DeckPreview" component={DeckPreview}/>
+      <Stack.Screen name="SingleDeck" component={SingleDeckPreview}/>
       <Stack.Screen name="NewQuestion" component={NewQuestion}/>
       <Stack.Screen name="QuizQuestion" component={QuizQuestion}/>
       <Stack.Screen name="QuizResult" component={QuizResult}/>
