@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Card from "../shared/Card";
 import {black, gray} from "../shared/StylesAndColors";
 import {getAllDecks, restoreData} from "../../model/LocalStore";
 
-export function DeckView() {
+export function DeckView(props) {
 
   const [allDeacks, setAllDecks] = useState([]);
 
@@ -19,10 +19,15 @@ export function DeckView() {
   return (
     <View style={styles.container}>
       {allDeacks.map((deck: { deckTitel: string, nrOfCards: string }) =>
-        <Card key={deck.deckTitel}>
-          <Text style={styles.header}>{deck.deckTitel}</Text>
-          <Text style={styles.cardNr}>{deck.nrOfCards}</Text>
-        </Card>
+        <TouchableOpacity style={{alignSelf: 'stretch'}}
+                          onPress={() => props.navigation.navigate('SingleDeckPreview', deck.deckTitel)}
+                          key={deck.deckTitel}
+        >
+          <Card>
+            <Text style={styles.header}>{deck.deckTitel}</Text>
+            <Text style={styles.cardNr}>{deck.nrOfCards}</Text>
+          </Card>
+        </TouchableOpacity>
       )}
 
     </View>
