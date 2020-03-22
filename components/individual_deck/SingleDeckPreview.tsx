@@ -1,26 +1,24 @@
 import React from "react";
-import { KeyboardAvoidingView, StyleSheet, Text, View } from "react-native";
-import {
-  blue,
-  centerWhite,
-  white,
-  black,
-  gray
-} from "../shared/StylesAndColors";
+import {StyleSheet, Text, View} from "react-native";
+import {black, centerWhite, gray} from "../shared/StylesAndColors";
 import TextButton from "../shared/TextButton";
 import Card from "../shared/Card";
 
-export function SingleDeckPreview() {
+export function SingleDeckPreview({route, navigation}) {
+  const {deckTitel, nrOfCards}: { deckTitel: string, nrOfCards: string } = route.params;
+
   return (
     <View style={centerWhite.container}>
       <Card>
-        <Text style={styles.header}>Decktitel</Text>
-        <Text style={styles.cardNr}>1 card</Text>
+        <Text style={styles.header}>{deckTitel}</Text>
+        <Text style={styles.cardNr}>{nrOfCards}</Text>
       </Card>
-      <TextButton onPress={() => {}} buttonStyle="primary">
+      <TextButton onPress={() => {
+      }} buttonStyle="primary">
         Add Card
       </TextButton>
-      <TextButton onPress={() => {}} buttonStyle="secondary">
+      <TextButton onPress={() => {
+      }} buttonStyle="secondary">
         Take Quiz
       </TextButton>
     </View>

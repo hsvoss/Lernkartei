@@ -4,7 +4,7 @@ import {blue, gray, red, white} from "../shared/StylesAndColors";
 import TextButton from "../shared/TextButton";
 import {containsDeck, newDeck} from "../../model/LocalStore";
 
-export function NewDeck(props) {
+export function NewDeck({navigation}) {
   const [newDeckName, changeNewDeckName] = React.useState();
 
   let duplicateDeck: boolean = containsDeck(newDeckName);
@@ -30,7 +30,7 @@ export function NewDeck(props) {
         onPress={async () => {
           if (!(isEmpty || duplicateDeck)) {
             await newDeck(newDeckName);
-            props.navigation.navigate('SingleDeckPreview', newDeckName);
+            navigation.navigate('SingleDeckPreview', {deckTitel: newDeckName, nrOfCards: '0 cards'})
             changeNewDeckName("");
           }
 

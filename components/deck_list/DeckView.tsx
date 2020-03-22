@@ -4,7 +4,7 @@ import Card from "../shared/Card";
 import {black, gray} from "../shared/StylesAndColors";
 import {getAllDecks, restoreData} from "../../model/LocalStore";
 
-export function DeckView(props) {
+export function DeckView({navigation}) {
 
   const [allDeacks, setAllDecks] = useState([]);
 
@@ -20,7 +20,7 @@ export function DeckView(props) {
     <View style={styles.container}>
       {allDeacks.map((deck: { deckTitel: string, nrOfCards: string }) =>
         <TouchableOpacity style={{alignSelf: 'stretch'}}
-                          onPress={() => props.navigation.navigate('SingleDeckPreview', deck.deckTitel)}
+                          onPress={() => navigation.navigate('SingleDeckPreview', {deckTitel: deck.deckTitel, nrOfCards: deck.nrOfCards})}
                           key={deck.deckTitel}
         >
           <Card>
