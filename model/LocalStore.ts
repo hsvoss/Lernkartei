@@ -42,6 +42,16 @@ export const addQestionToDeck = async (deckTitel: string, question: Question): P
   await saveData();
 };
 
+export const getAllDecks = (): { deckTitel: string, nrOfCards: string }[] => {
+  return Object.keys(decks).map((key: string) => {
+    const deck: Deck = decks[key];
+    return {
+      deckTitel: deck.deckTitel,
+      nrOfCards: deck.questions.length.toString().concat(" ", deck.questions.length === 1 ? 'card' : 'cards')
+    }
+  })
+
+};
 
 
 

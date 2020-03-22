@@ -1,46 +1,52 @@
-import React from "react";
-import {StyleSheet, Text, View} from "react-native"
-import TextButton from "../shared/TextButton";
-import {addQestionToDeck, getDeck, newDeck, restoreData} from "../../model/LocalStore";
-import {Deck} from "../../model/Deck";
-import {Question} from "../../model/Question";
+import React, {useEffect, useState} from "react";
+import {StyleSheet, Text, View} from "react-native";
+import Card from "../shared/Card";
+import {black, gray} from "../shared/StylesAndColors";
+import {getAllDecks, restoreData} from "../../model/LocalStore";
 
+export function DeckView() {
 
-export class DeckView extends React.Component<{ navigation }> {
+  const [allDeacks, setAllDecks] = useState([]);
 
-  state = {
-    deck: null
-  };
+  useEffect(() => {
+    const asyncRestoreData = async () => {
+      await restoreData();
+      // debugger
+      // let allDecks: { deckTitel: string, nrOfCards: number }[] = getAllDecks();
+      setAllDecks(getAllDecks());
+      // debugger
+    };
+    asyncRestoreData();
+  });
 
-  async componentDidMount() {
-    await restoreData();
-    let deck: Deck | null = await getDeck('test');
-    this.setState({deck: deck})
-    // this.props.navigation.navigate('QuizQuestion');
-  }
+  return (
+    <View style={styles.container}>
+      {allDeacks.map((deck: { deckTitel: string, nrOfCards: string }) =>
+        <Card key={deck.deckTitel}>
+          <Text style={styles.header}>{deck.deckTitel}</Text>
+          <Text style={styles.cardNr}>{deck.nrOfCards}</Text>
+        </Card>
+      )}
 
-  render() {
-    return <View style={styles.container}>
-      <Text>DeckList</Text>
-      {this.state.deck === undefined || this.state.deck === null
-        ? <Text>Deck is undefined</Text>
-        : <Text>{JSON.stringify(this.state.deck)}</Text>}
-      <TextButton onPress={async () => {
-        await newDeck('test');
-        await addQestionToDeck('test', new Question('frageA', 'antwortA'));
-        await addQestionToDeck('test', new Question('frageB', 'antwortB'));
-      }
-      }>Store Text</TextButton>
     </View>
-
-  }
+  );
 }
 
 const styles = StyleSheet.create({
+  header: {
+    fontSize: 40,
+    color: black,
+    textAlign: "center"
+  },
+  cardNr: {
+    fontSize: 30,
+    color: gray,
+    textAlign: "center"
+  },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     justifyContent: "space-evenly",
     alignItems: "center"
-  },
+  }
 });
