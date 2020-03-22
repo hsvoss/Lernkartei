@@ -6,7 +6,7 @@ import {Deck} from "../../model/Deck";
 import {Question} from "../../model/Question";
 
 
-export class DeckList extends React.Component<{navigation}> {
+export class MockView extends React.Component<{navigation}> {
 
   state = {
     deck: null
@@ -16,7 +16,7 @@ export class DeckList extends React.Component<{navigation}> {
     await restoreData();
     let deck: Deck | null = await getDeck('test');
     this.setState({deck: deck})
-    this.props.navigation.navigate('QuizQuestion');
+    // this.props.navigation.navigate('QuizQuestion');
   }
 
   render() {
