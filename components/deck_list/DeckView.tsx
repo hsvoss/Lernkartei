@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {ScrollView, StyleSheet, Text, TouchableOpacity} from "react-native";
 import Card from "../shared/Card";
 import {black, gray} from "../shared/StylesAndColors";
 import {getAllDecks, restoreData} from "../../model/LocalStore";
@@ -17,20 +17,23 @@ export function DeckView({navigation}) {
   });
 
   return (
-    <View style={styles.container}>
+    <ScrollView>
       {allDeacks.map((deck: { deckTitel: string, nrOfCards: string }) =>
         <TouchableOpacity style={{alignSelf: 'stretch'}}
-                          onPress={() => navigation.navigate('SingleDeckPreview', {deckTitel: deck.deckTitel, nrOfCards: deck.nrOfCards})}
+                          onPress={() => navigation.navigate('SingleDeckPreview', {
+                            deckTitel: deck.deckTitel,
+                            nrOfCards: deck.nrOfCards
+                          })}
                           key={deck.deckTitel}
         >
-          <Card>
+          <Card style={{margin: 15}}>
             <Text style={styles.header}>{deck.deckTitel}</Text>
             <Text style={styles.cardNr}>{deck.nrOfCards}</Text>
           </Card>
         </TouchableOpacity>
       )}
 
-    </View>
+    </ScrollView>
   );
 }
 
@@ -45,10 +48,10 @@ const styles = StyleSheet.create({
     color: gray,
     textAlign: "center"
   },
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    justifyContent: "space-evenly",
-    alignItems: "center"
-  }
+  // container: {
+  //   flex: 1,
+  //   backgroundColor: "#fff",
+  //   justifyContent: "space-evenly",
+  //   alignItems: "center"
+  // }
 });
