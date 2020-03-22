@@ -44,8 +44,8 @@ export const containsDeck: (deckTitel: string) => boolean = (deckTitel: string) 
   return decks.hasOwnProperty(deckTitel);
 };
 
-export const addQestionToDeck = async (deckTitel: string, question: Question): Promise<void> => {
-  decks[deckTitel].questions.push(question);
+export const addQestionToDeck = async (deckTitel: string, questionText: string, answerText: string): Promise<void> => {
+  decks[deckTitel].questions.push(new Question(questionText, answerText));
   await saveData();
 };
 

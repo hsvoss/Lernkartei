@@ -5,10 +5,10 @@ import TextButton from "../shared/TextButton";
 import {containsDeck, newDeck} from "../../model/LocalStore";
 
 export function NewDeck({navigation}) {
-  const [newDeckName, changeNewDeckName] = React.useState();
+  const [newDeckName, changeNewDeckName] = React.useState('');
 
   let duplicateDeck: boolean = containsDeck(newDeckName);
-  let isEmpty: boolean = newDeckName === undefined || newDeckName === '';
+  let isEmpty: boolean = newDeckName === '';
 
   return (
     <KeyboardAvoidingView

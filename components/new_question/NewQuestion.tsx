@@ -3,10 +3,12 @@ import {KeyboardAvoidingView, StyleSheet, Text, TextInput} from "react-native";
 import {blue, white} from "../shared/StylesAndColors";
 import TextButton from "../shared/TextButton";
 import Card from "../shared/Card";
+import {addQestionToDeck} from "../../model/LocalStore";
 
-export function NewQuestion() {
-  const [question, onChangeQuestion] = React.useState();
-  const [answer, onChangeAnswer] = React.useState();
+export function NewQuestion({route, navigation}) {
+  const [questionText, onChangeQuestion] = React.useState('');
+  const [answerText, onChangeAnswer] = React.useState('');
+  const {deckTitel}: { deckTitel: string } = route.params;
 
   return (
     <KeyboardAvoidingView
@@ -21,17 +23,17 @@ export function NewQuestion() {
           style={styles.input}
           onChangeText={text => onChangeQuestion(text)}
           placeholder={"Question"}
-          value={question}
+          value={questionText}
         />
         <TextInput
           style={styles.input}
           onChangeText={text => onChangeAnswer(text)}
           placeholder={"Answer"}
-          value={answer}
+          value={answerText}
         />
       </Card>
-
-      <TextButton onPress={() => {
+      <TextButton enabled={questionText !== '' && answerText !== ''} onPress={async () => {
+        await addQestionToDeck(deckTitel, questionText, answerText);
       }}>Submit</TextButton>
     </KeyboardAvoidingView>
   );
