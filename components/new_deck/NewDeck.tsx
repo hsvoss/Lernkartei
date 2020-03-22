@@ -1,10 +1,14 @@
 import React from "react";
 import {KeyboardAvoidingView, StyleSheet, Text, TextInput} from "react-native";
-import {blue, white} from "../shared/StylesAndColors";
+import {blue, gray, red, white} from "../shared/StylesAndColors";
 import TextButton from "../shared/TextButton";
+import {containsDeck, newDeck} from "../../model/LocalStore";
 
-export function NewDeck() {
-  const [value, onChangeText] = React.useState();
+export function NewDeck(props) {
+  const [newDeckName, changeNewDeckName] = React.useState();
+
+  let duplicateDeck: boolean = containsDeck(newDeckName);
+  let isEmpty: boolean = newDeckName === undefined || newDeckName === '';
 
   return (
     <KeyboardAvoidingView
@@ -16,12 +20,21 @@ export function NewDeck() {
       <Text style={styles.header}>Whats your title for your new deck?</Text>
       <TextInput
         style={styles.input}
-        onChangeText={text => onChangeText(text)}
+        onChangeText={text => changeNewDeckName(text)}
         placeholder={"Name your new deck!"}
-        value={value}
+        value={newDeckName}
       />
-      <TextButton onPress={() => {
-      }}>Submit</TextButton>
+      {duplicateDeck && <Text style={{color: red}}>You already have a deck with this name.</Text>}
+      <TextButton
+        style={(isEmpty || duplicateDeck) && {backgroundColor: gray,}}
+        onPress={async () => {
+          if (!(isEmpty || duplicateDeck)) {
+            await newDeck(newDeckName);
+            props.navigation.navigate('SingleDeckPreview', newDeckName);
+            changeNewDeckName("");
+          }
+
+        }}>Submit</TextButton>
     </KeyboardAvoidingView>
   );
 }

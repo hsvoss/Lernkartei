@@ -24,6 +24,13 @@ const saveData = async (): Promise<void> => {
   await AsyncStorage.setItem(decksKey, stringify)
 };
 
+export const resetData = async (): Promise<void> => {
+  decks = {};
+  await saveData();
+
+};
+
+
 export let getDeck: (deckTitel: string) => Deck = (deckTitel: string) => {
   return decks[deckTitel];
 };

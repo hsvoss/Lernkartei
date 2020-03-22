@@ -25,7 +25,7 @@ export function Navigation() {
     <Stack.Navigator initialRouteName={"TabNavigator"}>
       <Stack.Screen name="TabNavigator" component={TabNavigator}
                     options={{headerStyle: {height: 0}, headerTitle: ""}}/>
-      <Stack.Screen name="SingleDeck" component={SingleDeckPreview}/>
+      <Stack.Screen name="SingleDeckPreview" component={SingleDeckPreview}/>
       <Stack.Screen name="NewQuestion" component={NewQuestion}/>
       <Stack.Screen name="QuizQuestion" component={QuizQuestion}/>
       <Stack.Screen name="QuizResult" component={QuizResult}/>

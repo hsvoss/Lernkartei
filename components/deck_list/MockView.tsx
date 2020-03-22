@@ -1,12 +1,12 @@
 import React from "react";
 import {StyleSheet, Text, View} from "react-native"
 import TextButton from "../shared/TextButton";
-import {addQestionToDeck, getDeck, newDeck, restoreData} from "../../model/LocalStore";
+import {addQestionToDeck, getDeck, newDeck, resetData, restoreData} from "../../model/LocalStore";
 import {Deck} from "../../model/Deck";
 import {Question} from "../../model/Question";
 
 
-export class MockView extends React.Component<{navigation}> {
+export class MockView extends React.Component<{ navigation }> {
 
   state = {
     deck: null
@@ -31,6 +31,10 @@ export class MockView extends React.Component<{navigation}> {
         await addQestionToDeck('test', new Question('frageB', 'antwortB'));
       }
       }>Store Text</TextButton>
+      <TextButton onPress={async () => {
+        await resetData();
+      }
+      }>Reset Data</TextButton>
     </View>
 
   }

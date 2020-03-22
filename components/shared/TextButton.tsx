@@ -1,13 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { blue, white, black } from "./StylesAndColors";
+import {StyleSheet, Text, TouchableOpacity} from "react-native";
+import {blue, white} from "./StylesAndColors";
 
-export default function TextButton({
-  children,
-  onPress,
-  style = {},
-  buttonStyle = "primary"
-}) {
+export default function TextButton({children, onPress, style = {}, buttonStyle = "primary"}) {
   return (
     <TouchableOpacity
       onPress={onPress}

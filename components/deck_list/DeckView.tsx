@@ -11,10 +11,7 @@ export function DeckView() {
   useEffect(() => {
     const asyncRestoreData = async () => {
       await restoreData();
-      // debugger
-      // let allDecks: { deckTitel: string, nrOfCards: number }[] = getAllDecks();
       setAllDecks(getAllDecks());
-      // debugger
     };
     asyncRestoreData();
   });
