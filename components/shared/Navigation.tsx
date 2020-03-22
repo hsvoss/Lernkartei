@@ -7,7 +7,6 @@ import {SingleDeckPreview} from "../individual_deck/SingleDeckPreview";
 import {NewDeck} from "../new_deck/NewDeck";
 import {NewQuestion} from "../new_question/NewQuestion";
 import {QuizQuestion} from "../quiz/QuizQuestion";
-import {QuizResult} from "../quiz/QuizResult";
 import {createMaterialBottomTabNavigator} from "@react-navigation/material-bottom-tabs";
 import {DeckView} from "../deck_list/DeckView";
 
@@ -28,7 +27,6 @@ export function Navigation() {
       <Stack.Screen name="SingleDeckPreview" component={SingleDeckPreview}/>
       <Stack.Screen name="NewQuestion" component={NewQuestion}/>
       <Stack.Screen name="QuizQuestion" component={QuizQuestion}/>
-      <Stack.Screen name="QuizResult" component={QuizResult}/>
     </Stack.Navigator>
   </NavigationContainer>
 }

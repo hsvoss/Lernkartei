@@ -3,7 +3,6 @@ import {StyleSheet, Text, View} from "react-native"
 import TextButton from "../shared/TextButton";
 import {addQestionToDeck, getDeck, newDeck, resetData, restoreData} from "../../model/LocalStore";
 import {Deck} from "../../model/Deck";
-import {Question} from "../../model/Question";
 
 
 export class MockView extends React.Component<{ navigation }> {
@@ -27,8 +26,8 @@ export class MockView extends React.Component<{ navigation }> {
         : <Text>{JSON.stringify(this.state.deck)}</Text>}
       <TextButton onPress={async () => {
         await newDeck('test');
-        await addQestionToDeck('test', new Question('frageA', 'antwortA'));
-        await addQestionToDeck('test', new Question('frageB', 'antwortB'));
+        await addQestionToDeck('test', 'frageA', 'antwortA');
+        await addQestionToDeck('test', 'frageB', 'antwortB');
       }
       }>Store Text</TextButton>
       <TextButton onPress={async () => {
