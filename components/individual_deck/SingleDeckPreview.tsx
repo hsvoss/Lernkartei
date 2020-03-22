@@ -1,6 +1,6 @@
 import React from "react";
 import {StyleSheet, Text, View} from "react-native";
-import {black, centerWhite, gray} from "../shared/StylesAndColors";
+import {black, centerWhite, grey} from "../shared/StylesAndColors";
 import TextButton from "../shared/TextButton";
 import Card from "../shared/Card";
 
@@ -14,10 +14,12 @@ export function SingleDeckPreview({route, navigation}) {
         <Text style={styles.cardNr}>{nrOfCards}</Text>
       </Card>
       <TextButton onPress={() => {
+        navigation.navigate('NewQuestion', {deckTitel: deckTitel})
       }} buttonStyle="primary">
         Add Card
       </TextButton>
       <TextButton onPress={() => {
+        navigation.navigate('QuizQuestion', {deckTitel: deckTitel})
       }} buttonStyle="secondary">
         Take Quiz
       </TextButton>
@@ -39,7 +41,7 @@ const styles = StyleSheet.create({
   },
   cardNr: {
     fontSize: 30,
-    color: gray,
+    color: grey,
     textAlign: "center"
   }
 });

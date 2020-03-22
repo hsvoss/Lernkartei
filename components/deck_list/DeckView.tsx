@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {ScrollView, StyleSheet, Text, TouchableOpacity} from "react-native";
 import Card from "../shared/Card";
-import {black, gray} from "../shared/StylesAndColors";
+import {black, grey} from "../shared/StylesAndColors";
 import {getAllDecks, restoreData} from "../../model/LocalStore";
 
 export function DeckView({navigation}) {
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
   cardNr: {
     fontSize: 30,
-    color: gray,
+    color: grey,
     textAlign: "center"
   },
   // container: {

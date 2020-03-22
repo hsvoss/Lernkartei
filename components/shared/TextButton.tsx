@@ -1,33 +1,48 @@
 import React from "react";
-import {StyleSheet, Text, TouchableOpacity} from "react-native";
-import {blue, white} from "./StylesAndColors";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {blue, grey, white} from "./StylesAndColors";
 
-export default function TextButton({children, onPress, style = {}, buttonStyle = "primary"}) {
+export default function TextButton({children, onPress, style = {}, buttonStyle = "primary", enabled = true}) {
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={[
-        buttonStyle === "primary" ? styles.primaryBtn : styles.secondaryBtn,
-        style
-      ]}
-    >
-      <Text
-        style={
-          buttonStyle === "primary"
-            ? styles.primaryBtnText
-            : styles.secondaryBtnText
-        }
+    <View>
+      {enabled && <TouchableOpacity
+        onPress={onPress}
+        style={[
+          buttonStyle === "primary" ? styles.primaryBtn : styles.secondaryBtn,
+          style
+        ]}
       >
-        {children}
-      </Text>
-    </TouchableOpacity>
+        <Text
+          style={
+            buttonStyle === "primary"
+              ? styles.primaryBtnText
+              : styles.secondaryBtnText
+          }
+        >
+          {children}
+        </Text>
+      </TouchableOpacity>}
+      {!enabled &&
+      <View style={[styles.disabledBtn, style]}>
+        <Text style={styles.primaryBtnText}>
+          {children}
+        </Text>
+      </View>}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  reset: {
-    textAlign: "center",
-    color: blue
+
+  disabledBtn: {
+    backgroundColor: grey,
+    padding: 10,
+    borderRadius: 2,
+    height: 45,
+    marginLeft: 30,
+    marginRight: 30,
+    justifyContent: "center",
+    alignItems: "center"
   },
   primaryBtn: {
     backgroundColor: blue,

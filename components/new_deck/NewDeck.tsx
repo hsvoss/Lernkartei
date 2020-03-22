@@ -1,6 +1,6 @@
 import React from "react";
 import {KeyboardAvoidingView, StyleSheet, Text, TextInput} from "react-native";
-import {blue, gray, red, white} from "../shared/StylesAndColors";
+import {blue, grey, red, white} from "../shared/StylesAndColors";
 import TextButton from "../shared/TextButton";
 import {containsDeck, newDeck} from "../../model/LocalStore";
 
@@ -26,14 +26,11 @@ export function NewDeck({navigation}) {
       />
       {duplicateDeck && <Text style={{color: red}}>You already have a deck with this name.</Text>}
       <TextButton
-        style={(isEmpty || duplicateDeck) && {backgroundColor: gray,}}
+        enabled={!(isEmpty || duplicateDeck)}
         onPress={async () => {
-          if (!(isEmpty || duplicateDeck)) {
-            await newDeck(newDeckName);
-            navigation.navigate('SingleDeckPreview', {deckTitel: newDeckName, nrOfCards: '0 cards'})
-            changeNewDeckName("");
-          }
-
+          await newDeck(newDeckName);
+          navigation.navigate('SingleDeckPreview', {deckTitel: newDeckName, nrOfCards: '0 cards'})
+          changeNewDeckName("");
         }}>Submit</TextButton>
     </KeyboardAvoidingView>
   );
