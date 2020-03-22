@@ -29,7 +29,7 @@ export function NewDeck({navigation}) {
         enabled={!(isEmpty || duplicateDeck)}
         onPress={async () => {
           await newDeck(newDeckName);
-          navigation.navigate('SingleDeckPreview', {deckTitel: newDeckName, nrOfCards: '0 cards'})
+          navigation.navigate('SingleDeckPreview', {deckTitel: newDeckName})
           changeNewDeckName("");
         }}>Submit</TextButton>
     </KeyboardAvoidingView>

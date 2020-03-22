@@ -34,6 +34,7 @@ export function NewQuestion({route, navigation}) {
       </Card>
       <TextButton enabled={questionText !== '' && answerText !== ''} onPress={async () => {
         await addQestionToDeck(deckTitel, questionText, answerText);
+        navigation.navigate('SingleDeckPreview', {deckTitel: deckTitel})
       }}>Submit</TextButton>
     </KeyboardAvoidingView>
   );

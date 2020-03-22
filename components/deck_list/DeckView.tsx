@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {ScrollView, StyleSheet, Text, TouchableOpacity} from "react-native";
 import Card from "../shared/Card";
 import {black, grey} from "../shared/StylesAndColors";
-import {getAllDecks, restoreData} from "../../model/LocalStore";
+import {getAllDeckCards, restoreData} from "../../model/LocalStore";
 
 export function DeckView({navigation}) {
 
@@ -11,7 +11,7 @@ export function DeckView({navigation}) {
   useEffect(() => {
     const asyncRestoreData = async () => {
       await restoreData();
-      setAllDecks(getAllDecks());
+      setAllDecks(getAllDeckCards());
     };
     asyncRestoreData();
   });
@@ -22,7 +22,6 @@ export function DeckView({navigation}) {
         <TouchableOpacity style={{alignSelf: 'stretch'}}
                           onPress={() => navigation.navigate('SingleDeckPreview', {
                             deckTitel: deck.deckTitel,
-                            nrOfCards: deck.nrOfCards
                           })}
                           key={deck.deckTitel}
         >

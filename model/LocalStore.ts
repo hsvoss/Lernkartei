@@ -49,15 +49,16 @@ export const addQestionToDeck = async (deckTitel: string, questionText: string, 
   await saveData();
 };
 
-export const getAllDecks = (): { deckTitel: string, nrOfCards: string }[] => {
-  return Object.keys(decks).map((key: string) => {
-    const deck: Deck = decks[key];
-    return {
-      deckTitel: deck.deckTitel,
-      nrOfCards: deck.questions.length.toString().concat(" ", deck.questions.length === 1 ? 'card' : 'cards')
-    }
-  })
+export const getAllDeckCards = (): { deckTitel: string, nrOfCards: string }[] => {
+  return Object.keys(decks).map((key: string) => getOneDeckCards(key))
+};
 
+export const getOneDeckCards = (key: string): { deckTitel: string, nrOfCards: string } => {
+  const deck: Deck = decks[key];
+  return {
+    deckTitel: deck.deckTitel,
+    nrOfCards: deck.questions.length.toString().concat(" ", deck.questions.length === 1 ? 'card' : 'cards')
+  }
 };
 
 

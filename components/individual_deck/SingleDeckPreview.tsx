@@ -3,9 +3,10 @@ import {StyleSheet, Text, View} from "react-native";
 import {black, centerWhite, grey} from "../shared/StylesAndColors";
 import TextButton from "../shared/TextButton";
 import Card from "../shared/Card";
+import {getOneDeckCards} from "../../model/LocalStore";
 
 export function SingleDeckPreview({route, navigation}) {
-  const {deckTitel, nrOfCards}: { deckTitel: string, nrOfCards: string } = route.params;
+  const {deckTitel, nrOfCards}: { deckTitel: string, nrOfCards: string } = getOneDeckCards(route.params.deckTitel);
 
   return (
     <View style={centerWhite.container}>
