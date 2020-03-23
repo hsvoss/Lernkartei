@@ -21,7 +21,7 @@ export function SingleDeckPreview({route, navigation}) {
       </TextButton>
       <TextButton onPress={() => {
         navigation.navigate('QuizQuestion', {deckTitel: deckTitel})
-      }} buttonStyle="secondary">
+      }} buttonStyle="secondary" enabled ={nrOfCards !== '0 cards'}>
         Take Quiz
       </TextButton>
     </View>
