@@ -7,16 +7,29 @@ import {SingleDeckPreview} from "../individual_deck/SingleDeckPreview";
 import {NewDeck} from "../new_deck/NewDeck";
 import {NewQuestion} from "../new_question/NewQuestion";
 import {QuizQuestion} from "../quiz/QuizQuestion";
-import {createMaterialBottomTabNavigator} from "@react-navigation/material-bottom-tabs";
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {DeckView} from "../deck_list/DeckView";
+import {white} from "./StylesAndColors";
+import {Entypo, MaterialCommunityIcons} from 'react-native-vector-icons';
 
 const Stack = createStackNavigator();
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 
-const TabNavigator = () => <Tab.Navigator>
-  <Tab.Screen name="DeckList" component={DeckView}/>
-  <Tab.Screen name="NewDeck" component={NewDeck}/>
-  <Tab.Screen name="MockView" component={MockView}/>
+
+const TabNavigator = () => <Tab.Navigator
+  tabBarOptions={{activeBackgroundColor: white, inactiveBackgroundColor: white}}>
+  <Tab.Screen name="DeckList" component={DeckView} options={{
+    title: 'My Decks',
+    tabBarIcon: ({color, size}) => (<MaterialCommunityIcons name="cards-outline" size={size} color={color}/>)
+  }}/>
+  <Tab.Screen name="NewDeck" component={NewDeck} options={{
+    title: 'New Deck',
+    tabBarIcon: ({color, size}) => (<Entypo name="new-message" size={size} color={color}/>)
+  }}/>
+  {/*<Tab.Screen name="MockView" component={MockView} options={{*/}
+  {/*  title: 'Mock View',*/}
+  {/*  tabBarIcon: ({color, size}) => (<Entypo name="new" size={size} color={color}/>)*/}
+  {/*}}/>*/}
 </Tab.Navigator>;
 
 export function Navigation() {
@@ -24,9 +37,9 @@ export function Navigation() {
     <Stack.Navigator initialRouteName={"TabNavigator"}>
       <Stack.Screen name="TabNavigator" component={TabNavigator}
                     options={{headerStyle: {height: 0}, headerTitle: ""}}/>
-      <Stack.Screen name="SingleDeckPreview" component={SingleDeckPreview}/>
-      <Stack.Screen name="NewQuestion" component={NewQuestion}/>
-      <Stack.Screen name="QuizQuestion" component={QuizQuestion}/>
+      <Stack.Screen name="SingleDeckPreview" component={SingleDeckPreview} options={{headerTitle: 'Deck'}}/>
+      <Stack.Screen name="NewQuestion" component={NewQuestion} options={{headerTitle: 'Add a card'}}/>
+      <Stack.Screen name="QuizQuestion" component={QuizQuestion} options={{headerTitle: 'Quiz'}}/>
     </Stack.Navigator>
   </NavigationContainer>
 }

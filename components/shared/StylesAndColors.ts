@@ -16,6 +16,7 @@ export const white = "#fff";
 export const red = "#ff0000";
 export const orange = "#f26f28";
 export const blue = "#0a49b8";
+export const lightblue = "#3759ff";
 export const lightPurp = "#7c53c3";
 export const pink = "#b93fb3";
 export const green = "#008d09";

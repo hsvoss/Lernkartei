@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {StyleSheet, Text, View} from "react-native";
 import {black, centerWhite, grey} from "../shared/StylesAndColors";
 import TextButton from "../shared/TextButton";
@@ -6,7 +6,13 @@ import Card from "../shared/Card";
 import {getOneDeckCards} from "../../model/LocalStore";
 
 export function SingleDeckPreview({route, navigation}) {
-  const {deckTitel, nrOfCards}: { deckTitel: string, nrOfCards: string } = getOneDeckCards(route.params.deckTitel);
+  const {deckTitel}: { deckTitel: string } = route.params;
+
+  const [nrOfCards, setNrOfCards] = useState('0 cards');
+  useEffect(() => {
+    const {nrOfCards} = getOneDeckCards(route.params.deckTitel);
+    setNrOfCards(nrOfCards);
+  });
 
   return (
     <View style={centerWhite.container}>
@@ -21,7 +27,7 @@ export function SingleDeckPreview({route, navigation}) {
       </TextButton>
       <TextButton onPress={() => {
         navigation.navigate('QuizQuestion', {deckTitel: deckTitel})
-      }} buttonStyle="secondary" enabled ={nrOfCards !== '0 cards'}>
+      }} buttonStyle="secondary" enabled={nrOfCards !== '0 cards'}>
         Take Quiz
       </TextButton>
     </View>
