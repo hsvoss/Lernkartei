@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {StyleSheet, Text, View} from "react-native";
-import {black, centerWhite} from "../shared/StylesAndColors";
+import {black, centerWhite, white} from "../shared/StylesAndColors";
 import {QuizSingeView} from "./QuizSingeView";
 import {getDeck} from "../../model/LocalStore";
 import TextButton from "../shared/TextButton";
@@ -45,7 +45,7 @@ export function QuizQuestion({route, navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: white,
     justifyContent: "space-evenly",
     alignItems: "center"
   },
