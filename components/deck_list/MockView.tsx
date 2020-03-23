@@ -1,42 +1,41 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {StyleSheet, Text, View} from "react-native"
 import TextButton from "../shared/TextButton";
 import {addQestionToDeck, getDeck, newDeck, resetData, restoreData} from "../../model/LocalStore";
 import {Deck} from "../../model/Deck";
 
 
-export class MockView extends React.Component<{ navigation }> {
+export function MockView({navigation}) {
 
-  state = {
-    deck: null
-  };
+  const [deck, setSteck] = useState(null);
 
-  async componentDidMount() {
-    await restoreData();
-    let deck: Deck | null = await getDeck('test');
-    this.setState({deck: deck})
-    // this.props.navigation.navigate('QuizQuestion');
-  }
+  useEffect(() => {
+    const asyncRestoreData = async () => {
+      await restoreData();
+      let deck: Deck | null = await getDeck('test');
+      setSteck(deck);
+    };
+    asyncRestoreData();
+  });
 
-  render() {
-    return <View style={styles.container}>
-      <Text>DeckList</Text>
-      {this.state.deck === undefined || this.state.deck === null
-        ? <Text>Deck is undefined</Text>
-        : <Text>{JSON.stringify(this.state.deck)}</Text>}
-      <TextButton onPress={async () => {
-        await newDeck('test');
-        await addQestionToDeck('test', 'frageA', 'antwortA');
-        await addQestionToDeck('test', 'frageB', 'antwortB');
-      }
-      }>Store Text</TextButton>
-      <TextButton onPress={async () => {
-        await resetData();
-      }
-      }>Reset Data</TextButton>
-    </View>
+  return <View style={styles.container}>
+    <Text>DeckList</Text>
+    {deck === undefined || deck === null
+      ? <Text>Deck is undefined</Text>
+      : <Text>{JSON.stringify(deck)}</Text>}
+    <TextButton onPress={async () => {
+      await newDeck('test');
+      await addQestionToDeck('test', 'frageA', 'antwortA');
+      await addQestionToDeck('test', 'frageB', 'antwortB');
+    }
+    }>Store Text</TextButton>
+    <TextButton onPress={async () => {
+      await resetData();
+    }
+    }>Reset Data</TextButton>
+  </View>
 
-  }
+
 }
 
 const styles = StyleSheet.create({

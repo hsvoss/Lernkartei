@@ -29,12 +29,6 @@ export function SingleDeckPreview({route, navigation}) {
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: "#fff",
-  //   justifyContent: "space-evenly",
-  //   alignItems: "center"
-  // },
   header: {
     fontSize: 40,
     color: black,
