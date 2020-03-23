@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {ScrollView, StyleSheet, Text, TouchableOpacity} from "react-native";
+import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Card from "../shared/Card";
-import {black, grey} from "../shared/StylesAndColors";
+import {black, grey, white} from "../shared/StylesAndColors";
 import {getAllDeckCards, restoreData} from "../../model/LocalStore";
 
 export function DeckView({navigation}) {
 
-  const [allDeacks, setAllDecks] = useState([]);
+  const [allDecks, setAllDecks] = useState([]);
 
   useEffect(() => {
     const asyncRestoreData = async () => {
@@ -17,22 +17,22 @@ export function DeckView({navigation}) {
   });
 
   return (
-    <ScrollView>
-      {allDeacks.map((deck: { deckTitel: string, nrOfCards: string }) =>
-        <TouchableOpacity style={{alignSelf: 'stretch'}}
-                          onPress={() => navigation.navigate('SingleDeckPreview', {
-                            deckTitel: deck.deckTitel,
-                          })}
-                          key={deck.deckTitel}
-        >
-          <Card style={{margin: 15}}>
-            <Text style={styles.header}>{deck.deckTitel}</Text>
-            <Text style={styles.cardNr}>{deck.nrOfCards}</Text>
-          </Card>
-        </TouchableOpacity>
-      )}
-
-    </ScrollView>
+    allDecks.length === 0
+      ? <View style={styles.emptyList}><Text>Please create your first Deck!</Text></View>
+      : <ScrollView>
+        {allDecks.map((deck: { deckTitel: string, nrOfCards: string }) =>
+          <TouchableOpacity style={{alignSelf: 'stretch'}}
+                            onPress={() => navigation.navigate('SingleDeckPreview', {
+                              deckTitel: deck.deckTitel,
+                            })}
+                            key={deck.deckTitel}>
+            <Card style={{margin: 15}}>
+              <Text style={styles.header}>{deck.deckTitel}</Text>
+              <Text style={styles.cardNr}>{deck.nrOfCards}</Text>
+            </Card>
+          </TouchableOpacity>
+        )}
+      </ScrollView>
   );
 }
 
@@ -47,10 +47,10 @@ const styles = StyleSheet.create({
     color: grey,
     textAlign: "center"
   },
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: "#fff",
-  //   justifyContent: "space-evenly",
-  //   alignItems: "center"
-  // }
+  emptyList: {
+    flex: 1,
+    backgroundColor: white,
+    justifyContent: "space-evenly",
+    alignItems: "center"
+  }
 });

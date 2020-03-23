@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 export const centerWhite = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     justifyContent: "space-evenly",
     alignItems: "center"
   }
