@@ -36,7 +36,7 @@ export function QuizQuestion({route, navigation}) {
       {deck.questions.length <= iterator && <View style={styles.container}>
         <Text style={styles.score}>You scored:</Text>
         <Text style={styles.score}>{correctAnswers} / {iterator}</Text>
-        <TextButton onPress={() => navigation.goBack()}>Go Back</TextButton>
+        <TextButton onPress={() => navigation.goBack()}>Back to Deck</TextButton>
       </View>}
     </View>
   );
