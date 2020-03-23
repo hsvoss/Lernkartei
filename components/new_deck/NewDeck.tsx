@@ -1,6 +1,6 @@
 import React from "react";
 import {KeyboardAvoidingView, StyleSheet, Text, TextInput} from "react-native";
-import {blue, grey, red, white} from "../shared/StylesAndColors";
+import {blue, red, white} from "../shared/StylesAndColors";
 import TextButton from "../shared/TextButton";
 import {containsDeck, newDeck} from "../../model/LocalStore";
 
@@ -29,7 +29,7 @@ export function NewDeck({navigation}) {
         enabled={!(isEmpty || duplicateDeck)}
         onPress={async () => {
           await newDeck(newDeckName);
-          navigation.navigate('SingleDeckPreview', {deckTitel: newDeckName})
+          navigation.navigate('SingleDeckPreview', {deckTitel: newDeckName});
           changeNewDeckName("");
         }}>Submit</TextButton>
     </KeyboardAvoidingView>

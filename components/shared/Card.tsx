@@ -1,6 +1,6 @@
 import React from "react";
 import {StyleSheet, View} from "react-native";
-import { black } from "./StylesAndColors";
+import {black} from "./StylesAndColors";
 
 export default function Card({children, style = {}}) {
   return <View style={[styles.card, style]}>{children}</View>;
