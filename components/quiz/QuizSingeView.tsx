@@ -1,5 +1,4 @@
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import CardFlip from "react-native-card-flip";
+import {Animated, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Card from "../shared/Card";
 import React, {useState} from "react";
 import {black, blue, green, lightgrey, red} from "../shared/StylesAndColors";
@@ -8,25 +7,58 @@ import TextButton from "../shared/TextButton";
 export function QuizSingeView({questionText, answerText, onCorrect, onWrong, correctAnswers, remaining}) {
   const [answerShown, setAnswerShown] = useState(true);
 
+  const [questionRotation, setQuestionRotation] = useState(new Animated.Value(0));
+  const [answerRotation, setAnswerRotation] = useState(new Animated.Value(Math.PI * 1.5));
+
+
+  function showQuestion() {
+    Animated.timing(questionRotation, {duration: 500, toValue: Math.PI / 2}).start();
+    Animated.timing(answerRotation, {duration: 500, toValue: 0}).start();
+  }
+
+  function showAnswer() {
+    Animated.timing(answerRotation, {duration: 500, toValue: Math.PI * 1.5}).start();
+    Animated.timing(questionRotation, {duration: 500, toValue: Math.PI * 2}).start();
+  }
+
+  const flip = () => {
+    if (answerShown) {
+      showQuestion();
+    } else {
+      showAnswer();
+    }
+    setAnswerShown(!answerShown);
+  };
+
   return <View>
     <View style={styles.container}>
       <Text>{correctAnswers} / {remaining}</Text>
-      <TouchableOpacity onPress={() => {
-        setAnswerShown(!answerShown);
-        this.card.flip()
+      <TouchableOpacity style={styles.flipTouch} onPress={() => {
+        flip()
       }}>
-        <CardFlip style={styles.cardContainer} ref={card => (this.card = card)}>
+        <Animated.View style={[styles.flipCard, {
+          transform: [
+            {rotateY: questionRotation},
+            {perspective: 1000}, // without this line this Animation will not render on Android while working fine on iOS
+          ],
+        }]}>
           <Card style={styles.card}>
             <Text style={styles.header}>{questionText}</Text>
           </Card>
+        </Animated.View>
+        <Animated.View style={[styles.flipCard, {
+          transform: [
+            {rotateY: answerRotation},
+            {perspective: 1000}, // without this line this Animation will not render on Android while working fine on iOS
+          ],
+        }]}>
           <Card style={styles.card}>
             <Text style={styles.header}>{answerText}</Text>
           </Card>
-        </CardFlip>
+        </Animated.View>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => {
-        setAnswerShown(!answerShown);
-        this.card.flip()
+        flip()
       }}>
         {answerShown && <Text style={styles.reset}>Show Answer</Text>}
         {!answerShown && <Text style={styles.reset}>Show Question</Text>}
@@ -51,22 +83,30 @@ export function QuizSingeView({questionText, answerText, onCorrect, onWrong, cor
 }
 
 const styles = StyleSheet.create({
+  flipTouch: {
+    width: 300,
+    height: 200
+  },
+  flipCard: {
+    position: 'absolute',
+    padding: 0,
+    backfaceVisibility: "hidden",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 200,
+    width: 300,
+  },
   container: {
     flex: 1,
     backgroundColor: lightgrey,
     justifyContent: "space-evenly",
     alignItems: "center"
   },
-  cardContainer: {
-    // flex:1,
-    width: 350,
-    height: 300,
-  },
   reset: {
     color: blue
   },
   card: {
-    flex: 1
+    flex: 1,
   }
   ,
   header: {
