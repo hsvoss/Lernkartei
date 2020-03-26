@@ -5,12 +5,12 @@ import React, {useState} from "react";
 import {black, blue, green, lightgrey, red} from "../shared/StylesAndColors";
 import TextButton from "../shared/TextButton";
 
-export function QuizSingeView({questionText, answerText, onCorrect, onWrong, correctAnswers, iterator}) {
+export function QuizSingeView({questionText, answerText, onCorrect, onWrong, correctAnswers, remaining}) {
   const [answerShown, setAnswerShown] = useState(true);
 
   return <View>
     <View style={styles.container}>
-      <Text>{correctAnswers} / {iterator}</Text>
+      <Text>{correctAnswers} / {remaining}</Text>
       <TouchableOpacity onPress={() => {
         setAnswerShown(!answerShown);
         this.card.flip()
