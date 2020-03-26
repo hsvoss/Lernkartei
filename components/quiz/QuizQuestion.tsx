@@ -23,6 +23,11 @@ export function QuizQuestion({route, navigation}) {
     setIterator(iterator + 1);
   };
 
+  const startOver = () => {
+    setCorrectAnswers(0);
+    setIterator(0);
+  };
+
   return (
     <View style={centerLightGrey.container}>
       {deck.questions.length > iterator && <QuizSingeView
@@ -36,7 +41,8 @@ export function QuizQuestion({route, navigation}) {
       {deck.questions.length <= iterator && <View style={styles.container}>
         <Text style={styles.score}>You scored:</Text>
         <Text style={styles.score}>{correctAnswers} / {iterator}</Text>
-        <TextButton onPress={() => navigation.goBack()}>Back to Deck</TextButton>
+        <TextButton style={styles.button} buttonStyle={'secondary'} onPress={() => startOver()}>Start over</TextButton>
+        <TextButton style={styles.button} onPress={() => navigation.goBack()}>Back to Deck</TextButton>
       </View>}
     </View>
   );
@@ -53,5 +59,8 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: black,
     textAlign: "center"
+  },
+  button: {
+    width: 160
   },
 });
