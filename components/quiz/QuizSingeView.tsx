@@ -2,7 +2,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import CardFlip from "react-native-card-flip";
 import Card from "../shared/Card";
 import React, {useState} from "react";
-import {black, blue, green, red, white} from "../shared/StylesAndColors";
+import {black, blue, green, lightgrey, red} from "../shared/StylesAndColors";
 import TextButton from "../shared/TextButton";
 
 export function QuizSingeView({questionText, answerText, onCorrect, onWrong, correctAnswers, iterator}) {
@@ -53,7 +53,7 @@ export function QuizSingeView({questionText, answerText, onCorrect, onWrong, cor
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: white,
+    backgroundColor: lightgrey,
     justifyContent: "space-evenly",
     alignItems: "center"
   },

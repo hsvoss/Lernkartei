@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {StyleSheet, Text, View} from "react-native";
-import {black, centerWhite, grey} from "../shared/StylesAndColors";
+import {black, centerLightGrey, grey} from "../shared/StylesAndColors";
 import TextButton from "../shared/TextButton";
 import Card from "../shared/Card";
 import {getOneDeckCards} from "../../model/LocalStore";
@@ -15,7 +15,7 @@ export function SingleDeckPreview({route, navigation}) {
   });
 
   return (
-    <View style={centerWhite.container}>
+    <View style={centerLightGrey.container}>
       <Card>
         <Text style={styles.header}>{deckTitel}</Text>
         <Text style={styles.cardNr}>{nrOfCards}</Text>

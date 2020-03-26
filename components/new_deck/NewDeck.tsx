@@ -1,6 +1,6 @@
 import React from "react";
 import {KeyboardAvoidingView, StyleSheet, Text, TextInput} from "react-native";
-import {blue, red, white} from "../shared/StylesAndColors";
+import {blue, lightgrey, red, white} from "../shared/StylesAndColors";
 import TextButton from "../shared/TextButton";
 import {containsDeck, newDeck} from "../../model/LocalStore";
 
@@ -45,7 +45,7 @@ export function NewDeck({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: white,
+    backgroundColor: lightgrey,
     justifyContent: "space-evenly",
     alignItems: "center"
   },
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     borderColor: white,
+    backgroundColor: white,
     borderBottomColor: blue,
     borderWidth: 1,
     alignSelf: "stretch",

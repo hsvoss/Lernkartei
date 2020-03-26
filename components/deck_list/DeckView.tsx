@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Card from "../shared/Card";
-import {black, grey, white} from "../shared/StylesAndColors";
+import {black, grey, lightgrey, white} from "../shared/StylesAndColors";
 import {getAllDeckCards, restoreData} from "../../model/LocalStore";
 
 export function DeckView({navigation}) {
@@ -19,7 +19,7 @@ export function DeckView({navigation}) {
   return (
     allDecks.length === 0
       ? <View style={styles.emptyList}><Text>Please create your first Deck!</Text></View>
-      : <ScrollView>
+      : <ScrollView style={{backgroundColor: lightgrey}}>
         {allDecks.map((deck: { deckTitel: string, nrOfCards: string }) =>
           <TouchableOpacity style={{alignSelf: 'stretch'}}
                             onPress={() => navigation.navigate('SingleDeckPreview', {

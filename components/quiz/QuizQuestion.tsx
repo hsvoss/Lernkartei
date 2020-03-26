@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {StyleSheet, Text, View} from "react-native";
-import {black, centerWhite, white} from "../shared/StylesAndColors";
+import {black, centerLightGrey, white} from "../shared/StylesAndColors";
 import {QuizSingeView} from "./QuizSingeView";
 import {getDeck} from "../../model/LocalStore";
 import TextButton from "../shared/TextButton";
@@ -24,7 +24,7 @@ export function QuizQuestion({route, navigation}) {
   };
 
   return (
-    <View style={centerWhite.container}>
+    <View style={centerLightGrey.container}>
       {deck.questions.length > iterator && <QuizSingeView
         correctAnswers={correctAnswers}
         iterator={iterator}

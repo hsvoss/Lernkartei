@@ -1,6 +1,6 @@
 import React from "react";
 import {StyleSheet, View} from "react-native";
-import {black} from "./StylesAndColors";
+import {black, white} from "./StylesAndColors";
 
 export default function Card({children, style = {}}) {
   return <View style={[styles.card, style]}>{children}</View>;
@@ -8,6 +8,7 @@ export default function Card({children, style = {}}) {
 
 const styles = StyleSheet.create({
   card: {
+    backgroundColor: white,
     justifyContent: "space-around",
     alignSelf: 'stretch',
     marginHorizontal: 20,
