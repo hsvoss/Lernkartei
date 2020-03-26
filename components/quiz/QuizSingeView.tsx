@@ -10,18 +10,26 @@ export function QuizSingeView({questionText, answerText, onCorrect, onWrong, cor
   const [questionRotation, setQuestionRotation] = useState(new Animated.Value(0));
   const [answerRotation, setAnswerRotation] = useState(new Animated.Value(Math.PI * 1.5));
 
+  const resetView = () => {
+    setAnswerShown(true);
+    setQuestionRotation(new Animated.Value(0));
+    setAnswerRotation(new Animated.Value(Math.PI * 1.5))
+  };
 
-  function showQuestion() {
+
+  const showQuestion = () => {
+    setAnswerShown(false);
     Animated.sequence([
       Animated.timing(questionRotation, {duration: 500, toValue: Math.PI / 2}),
       Animated.timing(answerRotation, {duration: 500, toValue: Math.PI * 2})]).start()
-  }
+  };
 
-  function showAnswer() {
+  const showAnswer = () => {
+    setAnswerShown(true);
     Animated.sequence([
       Animated.timing(answerRotation, {duration: 500, toValue: Math.PI * 1.5}),
       Animated.timing(questionRotation, {duration: 500, toValue: 0})]).start()
-  }
+  };
 
   const flip = () => {
     if (answerShown) {
@@ -29,8 +37,8 @@ export function QuizSingeView({questionText, answerText, onCorrect, onWrong, cor
     } else {
       showAnswer();
     }
-    setAnswerShown(!answerShown);
   };
+
 
   return <View>
     <View style={styles.container}>
@@ -66,14 +74,20 @@ export function QuizSingeView({questionText, answerText, onCorrect, onWrong, cor
         {!answerShown && <Text style={styles.reset}>Show Question</Text>}
       </TouchableOpacity>
       <TextButton
-        onPress={() => onCorrect()}
+        onPress={() => {
+          onCorrect();
+          resetView();
+        }}
         buttonStyle="primary"
         style={{backgroundColor: green, width: 300}}
       >
         Correct
       </TextButton>
       <TextButton
-        onPress={() => onWrong()}
+        onPress={() => {
+          onWrong();
+          resetView();
+        }}
         buttonStyle="primary"
         style={{backgroundColor: red, width: 300}}
       >
