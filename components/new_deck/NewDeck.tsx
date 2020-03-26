@@ -27,9 +27,15 @@ export function NewDeck({navigation}) {
       {duplicateDeck && <Text style={{color: red}}>You already have a deck with this name.</Text>}
       <TextButton
         enabled={!(isEmpty || duplicateDeck)}
-        onPress={async () => {
-          await newDeck(newDeckName);
-          navigation.navigate('SingleDeckPreview', {deckTitel: newDeckName});
+        onPress={() => {
+          newDeck(newDeckName).then(() => {
+            navigation.navigate('SingleDeckPreview', {
+              deckTitel: newDeckName, randomParameterToForceRerender: Math.random()
+            });
+          });
+          // navigation.navigate('SingleDeckPreview', {deckTitel: newDeckName});
+
+
           changeNewDeckName("");
         }}>Submit</TextButton>
     </KeyboardAvoidingView>
