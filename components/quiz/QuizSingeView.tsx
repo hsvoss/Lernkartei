@@ -12,13 +12,15 @@ export function QuizSingeView({questionText, answerText, onCorrect, onWrong, cor
 
 
   function showQuestion() {
-    Animated.timing(questionRotation, {duration: 500, toValue: Math.PI / 2}).start();
-    Animated.timing(answerRotation, {duration: 500, toValue: 0}).start();
+    Animated.sequence([
+      Animated.timing(questionRotation, {duration: 500, toValue: Math.PI / 2}),
+      Animated.timing(answerRotation, {duration: 500, toValue: Math.PI * 2})]).start()
   }
 
   function showAnswer() {
-    Animated.timing(answerRotation, {duration: 500, toValue: Math.PI * 1.5}).start();
-    Animated.timing(questionRotation, {duration: 500, toValue: Math.PI * 2}).start();
+    Animated.sequence([
+      Animated.timing(answerRotation, {duration: 500, toValue: Math.PI * 1.5}),
+      Animated.timing(questionRotation, {duration: 500, toValue: 0})]).start()
   }
 
   const flip = () => {
@@ -89,7 +91,6 @@ const styles = StyleSheet.create({
   },
   flipCard: {
     position: 'absolute',
-    padding: 0,
     backfaceVisibility: "hidden",
     justifyContent: "center",
     alignItems: "center",
