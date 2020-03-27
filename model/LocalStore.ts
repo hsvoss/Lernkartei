@@ -30,7 +30,6 @@ export const resetData = async (): Promise<void> => {
 
 };
 
-
 export let getDeck: (deckTitel: string) => Deck = (deckTitel: string) => {
   return decks[deckTitel];
 };
@@ -59,6 +58,11 @@ export const getOneDeckCards = (key: string): { deckTitel: string, nrOfCards: st
     deckTitel: deck.deckTitel,
     nrOfCards: deck.questions.length.toString().concat(" ", deck.questions.length === 1 ? 'card' : 'cards')
   }
+};
+
+export const deleteDeck = async (deckTitel: string): Promise<void> => {
+  decks[deckTitel] = undefined;
+  await saveData();
 };
 
 

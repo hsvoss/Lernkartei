@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {StyleSheet, Text, View} from "react-native";
-import {black, centerLightGrey, grey} from "../shared/StylesAndColors";
+import {black, centerLightGrey, grey, red} from "../shared/StylesAndColors";
 import TextButton from "../shared/TextButton";
 import Card from "../shared/Card";
-import {getOneDeckCards} from "../../model/LocalStore";
+import {deleteDeck, getOneDeckCards} from "../../model/LocalStore";
+import {TouchableOpacity} from "react-native-gesture-handler";
 
 export function SingleDeckPreview({route, navigation}) {
   const {deckTitel}: { deckTitel: string } = route.params;
@@ -20,6 +21,12 @@ export function SingleDeckPreview({route, navigation}) {
         <Text style={styles.header}>{deckTitel}</Text>
         <Text style={styles.cardNr}>{nrOfCards}</Text>
       </Card>
+      <TouchableOpacity onPress={async () => {
+        await deleteDeck(deckTitel);
+        navigation.navigate('DeckList')
+      }}>
+        <Text style={{color: red}}>delete this deck</Text>
+      </TouchableOpacity>
       <TextButton onPress={() => {
         navigation.navigate('NewQuestion', {deckTitel: deckTitel})
       }} buttonStyle="primary">
